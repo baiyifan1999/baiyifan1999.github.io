@@ -1,4 +1,4 @@
-/* Anh Vo, avo@unimelb.edu.au, for unimelb.COMP20005.Workshop.Week2 */
+/* Anh Vo, avo@unimelb.edu.au, for unimelb.COMP10002.Workshop.Week2 */
 
 /* This program asks your name, greets you, and then
 	asks you to guess a number from MIN to MAX,
@@ -34,30 +34,30 @@
 #include <math.h>     /* for log10() and all math functions */
 
 #define MIN 1
-#define MAX 10	
+#define MAX 50
 #define MY_NAME "Anh"
 #define MAX_NAME_LEN 50
 
 int main(int argc, char *argv[]) {
 	char name[MAX_NAME_LEN + 1];   /* this is a string variable  */		
 	int secret,	                   /* my secret number           */
-		guess,		               /* your guess                 */
-		count= 0;                  /* number of guesses made     */
+	    guess,		               /* your guess                 */
+	    count= 0;                  /* number of guesses made     */
 	
 	/*-------- greeting ---------*/ 
 	printf("Hi! My name's %s. \nWhat's your name? ", MY_NAME);
-	scanf("%s", name);
+	scanf("%[^\n]", name);
 	printf("\nGreat, %s! Very nice to work with you this semester!\n\n", name);
 	
 	printf("Now, let's play a game\n"
 			"I have a secret number  between %d and %d inclusively,\n"
-			"could you please guess that number.\n\n",
+			"would you be able to guess that number just after a few trial?\n\n",
 			MIN, MAX );
 
 	/*-------- initializing ---------*/  
 	srand(time(NULL));                   /* start using random, aka. seeding */
-	secret= rand() % (MAX - MIN + 1) + MIN; /* secret= random number from 
-	                                           MIN to MAX inclusively        
+	secret= rand() % ((MAX - MIN)/2 + 1) + MIN+(MAX-MIN)/4; /* secret= random number from 
+	                                        in the mid-half of (MIN..MAX)        
 	                       rand() return a non-negative random integer, which 
 	                       could be very big, that's why % is employed here  */
 	count= 0;
@@ -76,22 +76,23 @@ int main(int argc, char *argv[]) {
 	}
 
 	/*-------- printing some assessments & concluding ---------*/ 
-	printf("\nRight, %s! You did it with %d guesses.\n", name, count);
+	printf("\nRight, %s, my secret number is really %d! You did it with %d guesses.\n",
+			 name, secret, count);
 	int max_seq = MAX - MIN + 1,    /* max guesses if using sequential search */
-	    max_bin = ceil(log10(max_seq)/log10(2)); /*if using binary search     */
-                                    /* see NOTE at the end of the program     */
+	max_bin = ceil(log10(max_seq)/log10(2)); /*if using binary search     */
+	                            /* see NOTE at the end of the program     */
 	          
-	if (count <= max_bin) {
+	if (count <= max_bin+1) {
 		printf ("You did so well!\nI guessed that you used binary search.\n");
 	} else if (count <= max_seq) {
-		printf ("Not bad!\nYou should probably think about a better strategy.\n");
+		printf ("Not bad!\nBut you could try a better strategy.\n");
 	} else {
-		printf ("Something wrong here, did you use a number repeatedly?\n");
+		printf ("Something wrong here, why did you make sooooo many guesses?\n");
 	}
 	
 	printf("\nHope that you enjoyed it.\n");
 	printf("Remember to explore the code, there is a good chance that\n"
-		   "you can understand it and learn something from there.\n\n");
+		   "you can understand it even after just 1 week of learning C.\n\n");
 	
 	return 0;
 }
