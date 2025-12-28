@@ -1,15 +1,16 @@
-# COMP10001  Foundation of Computing Programming Assignments
-# University of Melbourne – Programming Coursework
+# Textoggle
 
 This repository contains selected programming assignments completed during my
 Computer Science studies at the University of Melbourne.
 
-The projects recall core ideas such as algorithms, data structures,
-and basic software design.
+The projects recall core ideas such as algorithms and basic software design.
 
 ## Contents
 
-- 
+- Stage 1: Points available on the board
+- Stage 2: Check word existence (simplified)
+- Stage 3: Check word existence
+- Stage 4: Making a Move
 
 
 ## Technologies
